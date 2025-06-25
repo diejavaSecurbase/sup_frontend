@@ -50,3 +50,4 @@ testem.log
 Thumbs.db
 
 launch.json
+.env
