@@ -1,0 +1,241 @@
+<form
+  action=""
+  *ngIf="!this.currentCliente"
+  class="global-centered-form"
+  autocomplete="off"
+>
+  <label>País</label>
+  <p-dropdown
+    [options]="paisesOrigen"
+    name="pais_origen"
+    class="input"
+    [disabled]="true"
+  >
+  </p-dropdown>
+  <label>Tipo de documento</label>
+  <p-dropdown
+    [options]="tiposDocs"
+    [(ngModel)]="tipoDoc"
+    name="tipo_documento"
+    class="input"
+  >
+  </p-dropdown>
+  <label>Número de documento</label>
+  <input
+    type="text"
+    maxlength="11"
+    name="numbero_documento"
+    [(ngModel)]="numDoc"
+    pInputText
+  />
+  <button
+    (click)="buscar()"
+    pButton
+    class="boton-buscar ui-button"
+    label="Buscar"
+    [disabled]="disabled ? true : null"
+  ></button>
+</form>
+
+<div *ngIf="this.currentCliente" class="contenedor-cliente">
+  <form action="" class="global-centered-form">
+    <div *ngIf="currentCliente.estado_enrolamiento=='CONFIRMED'">
+        <h3 class="validationTitle"><em style="color: #00d900;" class="pi pi-check-circle"></em>ENROLAMIENTO CONFIRMADO</h3>
+    </div>
+    <div *ngIf="currentCliente.estado_enrolamiento!='CONFIRMED'">
+        <h4 class="validationTitle"><em style="color: red;" class="pi pi-times"></em>  SIN ENROLAMIENTO ACTIVO</h4>
+      <br />
+      <h5 class="validationSubtitle">Datos del último intento de enrolamiento</h5>
+    </div>
+  </form>
+  <div class="global-key-value-data">
+    <div class="global-key-value nameHeader">
+      <p>Nombre y Apellido: </p>
+      <p>{{ currentCliente.cliente.nombre + ' ' + currentCliente.cliente.apellido }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>Fecha de Nacimiento:</p>
+      <p>
+        {{ currentCliente.cliente.fechaNacimiento }}
+      </p>
+    </div>
+    <div class="global-key-value">
+      <p>Person ID:</p>
+      <p>{{ currentCliente.cliente.id_persona }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>Fecha de enrolamiento:</p>
+      <p>{{ currentCliente.registration_date }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>Canal de enrolamiento:</p>
+      <p>{{ currentCliente.canal_de_origen }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>Fecha de última validación OK:</p>
+      <p>{{ currentCliente.last_ok_validation_date }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>ID Trámite RENAPER:</p>
+      <p>{{ currentCliente.identificacion_digital.id_tramite }}</p>
+    </div>
+  </div>
+  <div class="global-key-value-data">
+    <div class="global-key-value">
+      <p [style]="{ 'text-align': 'left' }">Porcentaje de coincidencia Facephi:</p>
+      <p [style]="{ 'text-align': 'rigth' }">
+        {{ currentCliente.similitud_obtenida_plantilla_facial_extendida * 100 }} %
+      </p>
+    </div>
+    <div class="global-key-value">
+      <p>Porcentaje de coincidencia RENAPER:</p>
+      <p>
+        {{ currentCliente.identificacion_digital.porcentaje_similitud_renaper }} %
+      </p>
+    </div>
+    <div class="global-key-value">
+      <p>Estado Facephi:</p>
+      <p>
+        {{ currentCliente.status_obtenido_plantilla_facial_extendida }}
+      </p>
+    </div>
+    <div class="global-key-value">
+      <p>Estado RENAPER:</p>
+      <p>{{ currentCliente.identificacion_digital.estado }}</p>
+    </div>
+    <div class="global-key-value">
+      <p>Autenticación habilitada:</p>
+      <a *ngIf="currentCliente.autenticacion_habilitada">SI</a>
+      <a *ngIf="!currentCliente.autenticacion_habilitada">NO</a>
+    </div>    
+    <div class="global-key-value">
+      <p>Validado Manualmente:</p>
+      <a *ngIf="currentCliente.validado_manualmente">SI</a>
+      <a *ngIf="!currentCliente.validado_manualmente">NO</a>
+    </div>
+    <hr>
+    </div>
+    <form action="" class="global-centered-form">
+        <hr>
+        <div class="enrolamiento">
+            <p >ID enrolamiento:  {{ currentCliente.id_enrolamiento }}</p>
+        </div>
+    </form>
+
+    <form action="" class="formBioFacialButtons">
+      <div class="btncontainer">
+      <div class="botonesfacial">
+        <button
+          (click)="showPics()"
+          class="ui-button btnmarginright"
+          pButton
+          type="button"
+          label="Ver Fotos"
+        ></button>
+        <button
+          *ngIf="currentCliente.estado_enrolamiento === 'CONFIRMED'"
+          (click)="showHistory()"
+          class="ui-button-danger btnmarginright"
+          pButton
+          type="button"
+          label="Historial Autenticaciones"
+        ></button>        
+       <button
+          *ngIf="currentCliente.estado_enrolamiento === 'CONFIRMED'"
+          (click)="borrarEnrolamiento()"
+          class="ui-button-warning btnmarginright"
+          pButton
+          type="button"
+          label="Borrar enrolamiento"
+          id="borrarEnrolamientobtn"
+        ></button>
+        <button
+          (click)="buscarAgain()"
+          class="ui-button buscarAgain btnmarginright"
+          pButton
+          type="button"
+          label="Nueva búsqueda"
+        ></button>
+        <button
+          *ngIf="currentCliente.estado_enrolamiento == 'EXPIRED'"
+          (click)="validarManual()"
+          class="ui-button btnmarginright"
+          pButton
+          type="button"
+          label="Validar Manualmente"
+        ></button>
+      </div></div>
+    </form>
+</div>
+<section class="historyBlock" *ngIf="showTable">
+  <h4>Historial de Autenticaciones de los últimos 3 meses</h4>
+  <div class="card">
+    <p-table [value]="authHistoryList" [scrollable]="true" scrollHeight="400px">
+      <ng-template pTemplate="header">
+          <tr style="text-align: center;">
+              <th id="fechaHora">Fecha y Hora</th>
+              <th id="canal">Canal</th>
+              <th id="pruebaVida">Prueba de vida</th>
+              <th id="plantillaFacial">Plantilla facial</th>
+              <th id="similitudPlantilla">% Similitud plantilla facial</th>
+              <th id="mejorImagen">Mejor imagen</th>
+              <th id="similitudMejorImagen">% Similitud mejor imagen</th>
+              <th id="verImagen">Ver imagen</th>
+          </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-item>
+          <tr style="text-align: center;">
+              <td>{{item.fecha_autenticacion}}</td>
+              <td>{{item.canal}}</td>
+              <td>{{item.status_prueba_de_vida}}</td>
+              <td>{{item.status_plantilla_facial_extendida}}</td>
+              <td>{{item.similitud_plantilla_facial_extendida}}</td>
+              <td>{{item.status_mejor_imagen_facial}}</td>
+              <td>{{item.similitud_mejor_imagen_facial}}</td>
+              <td style="flex: 0 0 4rem">
+                  <button pButton pRipple type="button" [icon]="'pi pi-eye'" (click)="getAuthHistoryPicture(item)" class="p-button-sm p-button-text"></button>
+              </td>
+          </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</section>
+<p-dialog header="Biometria facial fotos" [(visible)]="displayModal" [modal]="false" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="cntModalFotos">
+      <div *ngFor="let foto of imgsBase" class="cntModalFoto">
+        <img [src]="foto.recurso" style="max-width: 400px; margin-bottom: 15px;" alt="">
+      </div>
+    </div>
+</p-dialog>
+<p-dialog header="Imagen Autenticación" [(visible)]="displayModalPictureRegistry" [modal]="false" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="cntModalFotos">
+      <div class="cntModalFoto">
+        <img [src]="imageRegistry" style="max-width: 400px; margin-bottom: 15px;" alt="">
+      </div>
+    </div>
+</p-dialog>
+<p-dialog header="Borrar Enrolamiento" [(visible)]="displayModalDeleteEnrollment" [modal]="false" [style]="{width: '50vw'}"
+    [draggable]="false" [resizable]="false" id="popUpBorrarEnrolamiento">
+    <div style="text-align: center;">
+      <em class="pi pi-times" style="font-size: 2rem; color: red;"></em>
+    </div>
+    <div style="text-align: center;" >
+      <p>¿Está seguro que desea eliminar el enrolamiento de <strong style="font-size: 130%;">{{nameSubname}}</strong>?</p>
+    </div>
+    <div style="text-align: center;"> 
+      <br>
+      <div class="cntButtons">       
+        <button class="ui-button-warning" pButton type="button" label="No" (click)="cancelarBajaEnrolamiento()" id="cancelDeleteEnrollment"></button> 
+        <button class="ui-button" pButton type="button" label="Si" (click)="confirmarBajaEnrolamiento()" id="confirmDeleteEnrollment"></button>   
+      </div>
+    </div>
+      
+    <p-footer>
+      <div>          
+        <p-message severity="warn" style="text-align: justify;"
+        text="Recuerde que el cliente deberá hacer todo el proceso de enrolamiento desde la App, escaneando el documento nuevamente si desea enrolarse."></p-message>  
+      </div>  
+    </p-footer> 
+</p-dialog>

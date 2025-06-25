@@ -1,0 +1,156 @@
+<testExecutions version="1">
+  <file path="Chrome_88_0_4298_0_(Windows_10).Menu">
+    <testCase name="Menu clone()" duration="4"/>
+    <testCase name="Menu Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).EnrolamientoComponent">
+    <testCase name="EnrolamientoComponent cancelarEnrolamiento() deberia cambiar confirmacionStatus.opening = false" duration="1"/>
+    <testCase name="EnrolamientoComponent confirmarForm() deberia cambiar activeIndex = 1" duration="1"/>
+    <testCase name="EnrolamientoComponent volverEnrolamiento() deberia cambiar confirmacionStatus.closing = true" duration="1"/>
+    <testCase name="EnrolamientoComponent volverForm() deberia cambiar activeIndex = 0" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).DetalleCajaComponent">
+    <testCase name="DetalleCajaComponent Deberia cargar el arreglo cabeceras" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).LoginComponent">
+    <testCase name="LoginComponent Usuario deberia ingresar al sistema" duration="93"/>
+    <testCase name="LoginComponent Deberia crear una instancia" duration="20"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ReporteDetalle">
+    <testCase name="ReporteDetalle Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).SpinnerComponent">
+    <testCase name="SpinnerComponent Deberia crearse una instancia" duration="14"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).AuditoriaRecinto">
+    <testCase name="AuditoriaRecinto Deberia crearse una instancia" duration="1"/>
+    <testCase name="AuditoriaRecinto clone()" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).FuncionGuard">
+    <testCase name="FuncionGuard Deberia de crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).MenuHorizontalComponent">
+    <testCase name="MenuHorizontalComponent Deberia crearse una instancia" duration="1"/>
+    <testCase name="MenuHorizontalComponent Deberia encontrar un elemento en this.items[0]" duration="1"/>
+    <testCase name="MenuHorizontalComponent Deberia inicializar this.items" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ErrorResponse">
+    <testCase name="ErrorResponse Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).CamelCaseToEspacioPipe">
+    <testCase name="CamelCaseToEspacioPipe Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).FooterComponent">
+    <testCase name="FooterComponent Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Cliente">
+    <testCase name="Cliente Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Domicilio">
+    <testCase name="Domicilio Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).EmpleadoGuard">
+    <testCase name="EmpleadoGuard Deberia de crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).BiometriaComponent">
+    <testCase name="BiometriaComponent buscar()" duration="54"/>
+    <testCase name="BiometriaComponent FAIL consultas.getCurrentClienteObservable()" duration="20"/>
+    <testCase name="BiometriaComponent buscarAgain()" duration="14"/>
+    <testCase name="BiometriaComponent FAIL consultas.getPaises()" duration="14"/>
+    <testCase name="BiometriaComponent FAIL consultas.getTiposDocs()" duration="14"/>
+    <testCase name="BiometriaComponent FAIL buscar()" duration="18"/>
+    <testCase name="BiometriaComponent verificarInput()" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+    <testCase name="BiometriaComponent FAIL buscar()" duration="17"/>
+    <testCase name="BiometriaComponent should create" duration="16"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Error">
+    <testCase name="Error Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Telefono">
+    <testCase name="Telefono Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).IdentificacionComponent">
+    <testCase name="IdentificacionComponent FAIL verificar() -> ELSE" duration="52"/>
+    <testCase name="IdentificacionComponent escanear huella" duration="18"/>
+    <testCase name="IdentificacionComponent ingresoManual()" duration="11"/>
+    <testCase name="IdentificacionComponent verificar()" duration="15"/>
+    <testCase name="IdentificacionComponent Deberia crearse una instancia" duration="12"/>
+    <testCase name="IdentificacionComponent detenerCaptura()" duration="16"/>
+    <testCase name="IdentificacionComponent FAIL consultasService.getTiposDocs()" duration="10"/>
+    <testCase name="IdentificacionComponent FAIL huellaService.cancelarEscaneo() -> SUCCESS checkearEstadoEscaner()" duration="10"/>
+    <testCase name="IdentificacionComponent detenerCaptura()" duration="11"/>
+    <testCase name="IdentificacionComponent buscarDeNuevo()" duration="10"/>
+    <testCase name="IdentificacionComponent enrolarClienteRapido()" duration="18"/>
+    <testCase name="IdentificacionComponent rescanear()" duration="13"/>
+    <testCase name="IdentificacionComponent FAIL verificar() -> ERROR" duration="18"/>
+    <testCase name="IdentificacionComponent FAIL huellaService.cancelarEscaneo() -> FAIL checkearEstadoEscaner()" duration="10"/>
+    <testCase name="IdentificacionComponent FAIL consultasService.getPaises()" duration="40"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).IdentificacionCliente">
+    <testCase name="IdentificacionCliente Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Documento">
+    <testCase name="Documento Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).TipoDocumento">
+    <testCase name="TipoDocumento Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).HuellaBack">
+    <testCase name="HuellaBack Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).EstadoCajaRecinto">
+    <testCase name="EstadoCajaRecinto clone()" duration="1"/>
+    <testCase name="EstadoCajaRecinto Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).CajaseguridadComponent">
+    <testCase name="CajaseguridadComponent abrirDetalleCaja()" duration="58"/>
+    <testCase name="CajaseguridadComponent abrirEstadoRecinto()" duration="17"/>
+    <testCase name="CajaseguridadComponent should create" duration="15"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ReporteIngreso">
+    <testCase name="ReporteIngreso Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).HomeComponent">
+    <testCase name="HomeComponent Deberia cargar secciones y devolver true en el atributo mostrarEnrolar" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).Generalizacion">
+    <testCase name="Generalizacion Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).MenuComponent">
+    <testCase name="MenuComponent Se deberia crear una instancia" duration="3"/>
+    <testCase name="MenuComponent Test toggleMenu()" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).IdentificacionBiometrica">
+    <testCase name="IdentificacionBiometrica Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ParametrosEscaner">
+    <testCase name="ParametrosEscaner Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).AppComponent">
+    <testCase name="AppComponent Variable title debe ser igual a spa-portal-clientes" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).NavComponent">
+    <testCase name="NavComponent should create" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).PersonaCaja">
+    <testCase name="PersonaCaja Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).EstadoRecintoComponent">
+    <testCase name="EstadoRecintoComponent Deberia crearse una instancia" duration="1">
+      <skipped message="Skipped"/>
+    </testCase>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ServicioBiometricoGuard">
+    <testCase name="ServicioBiometricoGuard Deberia crearse una instancia" duration="2"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).NavUser">
+    <testCase name="NavUser Deberia crearse una instancia" duration="1"/>
+  </file>
+  <file path="Chrome_88_0_4298_0_(Windows_10).ErrorComponent">
+    <testCase name="ErrorComponent Deberia crearse una instancia" duration="1"/>
+  </file>
+</testExecutions>

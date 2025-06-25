@@ -1,0 +1,252 @@
+## [3.0.16] - 2021-01-25
+### Changed
+- Cambiado el largo del input de documento en caja seguridad
+- Solucion en boton volver en enrolamiento biometria
+- cambiado TIEMPO_MAX_RECINTO_CS a 10
+
+## [3.0.15] - 2020-11-26
+### Changed
+- Comentados todos los .spec.ts para poder testear un solo unit test
+
+## [3.0.14] - 2020-11-25
+### Added
+- Testing con SonarQube, Karma y Jasmine.
+## [3.0.13] - 2020-11-16 
+### Changed
+- Separacion del las grillas del menu horizontal
+- En recinto ahora se muestra la descripcion de I/V/M
+- Imagen durante el enrolamiento ya no cambia de posicion
+
+
+## [3.0.12] - 2020-11-13 
+- Fix reporte de ingresos. Ahora ya no compara horas de forma innecesaria
+- Fix leyenda al finalizar enrolamiento.
+
+## [3.0.11] - 2020-11-11 
+
+### Added
+- Pais a elegir en formularios.
+
+## [3.0.10] - 2020-11-11
+- Formato de fecha a dd/mm/yyy en CajaSeguridad
+- Centrado de formulario de identificacion
+- Agregadas filas seleccionables en Caja de seguridad con y sin checkbox
+- Arreglado vertical scroll de tablas en Reporte de Ingresos y Reporte Detalle
+- Incorpoados nuevos estilos de seleccion de filas en tablas simil Saga-Blue de PrimeNG
+- Fix de leyenda de Huella tomada correctamente
+- Incorporada negrita en leyenda de toma de huellas y agregado el break line
+- Agregadas iconos de nacionalidad
+
+## [3.0.9] - 2020-11-10
+
+### Changed
+- Mejoras diseño enrolamiento.
+
+
+## [3.0.8] - 2020-11-9
+
+### Changed
+- Mejoras diseño enrolamiento.
+
+## [3.0.7] - 2020-11-9
+
+### Added
+- Mejoras diseño enrolamiento.
+
+## [3.0.6] - 2020-11-05
+
+### Added
+- Tercer Step, confirmacion de enrolamiento.
+
+## [3.0.5] - 2020-11-05
+
+###Changed
+- Corregida leyenda durante enrolamiento
+
+###Added
+- Agregada leyenda Huella tomada correctamente 
+
+## [3.0.4] - 2020-11-04
+
+### Changed
+- Corregidos estilos de botones
+- Corregidos mensajes de usuario
+- Corregido bug de DNI cuando se realiza una nueva identificacion 
+
+### Added
+- Agregado control de minimo para la fecha hasta en Reporte ingresos
+
+## [3.0.3] - 2020-11-03
+
+### Added
+- Agregado icono para los elementos tipo calendario
+
+## [3.0.2] - 2020-11-03
+
+###Changed
+- Fix spinner dobles en algunos componentes
+- Spinner ahora no se muestra durante el enrolamiento de huellas
+
+## [3.0.1] - 2020-11-02
+
+### Added
+- Agregado spinner general para la aplicacion en los http request
+
+## [2.6.3] - 2020-10-30
+
+### Changed
+- Estilo para PRIMENG STEPS
+
+
+## [2.6.2] - 2020-10-30
+
+### Added
+- PrimeNG Steps para visualizar el proceso de enrolamiento
+
+## [2.6.1] - 2020-10-27
+
+### Changed
+- Llamado a servicios cuando un usuario se identifica
+
+## [2.5.15] - 2020-10-23
+
+### Added
+- Verificar que los campos de formularios no contengan puntos(.)
+
+## [2.5.14] - 2020-10-23
+
+### Added
+- Verificacion adicional de Numero de documento, numero de celular y Codigo de Area
+
+## [2.5.13] - 2020-10-23
+
+### Added
+- Validaciones adicionales de formularios
+## [2.6.012] - 2020-10-22
+
+### Changed
+- hecho los ajustes necesarios para usar las sesiones correctamente
+
+## [2.5.11] - 2020-10-21
+
+### Added
+- Longitud de numero de enrolamiento cambia al elegir entre numero celular o fijo
+
+## [2.5.10] - 2020-10-21
+
+### Changed
+- Verificacion de Numero de codigo y Codigo de Area
+
+## [2.5.9] - 2020-10-21
+
+### Added
+- Mensaje de error al insertar mal los Inputs de Dni y Cod. Area
+
+## [2.5.8] - 2020-10-21
+
+### Changed
+- Placeholders de DNIs eliminados
+
+## [2.5.7] - 2020-10-20
+
+### Added
+- Reconexion WebSocket
+
+## [2.5.6] - 2020-10-16
+
+### Added
+- Mensaje de alerta cuando no se completa un form correctamente
+- Placeholders para todos los inputs
+
+### Changed
+- [max] de inputs numericos eliminado
+
+## [2.5.5] - 2020-10-13
+
+### Changed
+- Ajustes y validaciones de inputs de todos los formularios
+
+## [2.5.4] - 2020-10-08
+
+### Changed
+- Color y efecto :hover al link Logout
+
+## [2.5.3] - 2020-10-07
+
+### Changed
+- se ajustaron todos los cambios pedidos por sonar
+- se borraron todos los .css vacios
+- se refactorizaron varias funciones repetidas
+- ahora biometria-cajas extiende a enrolamiento para evitar tanto codigo repetido
+- ahora estado recinto actualiza automaticamente las personas en el recinto cuando verifica si alguien estuvo mas del tiempo maximo
+
+## [2.5.2] - 2020-10-07
+
+### Added
+- Link para salir arriba a la derecha
+
+### Changed
+- Boton salir no esta mas en el nav
+- se arreglo actualizacion biometrica, ahora funciona correctamente
+
+## [2.5.1] - 2020-09-11
+
+### Changed
+- se mantiene el cliente actual en cajas cuando se cambia de pestaña
+- Ajustado el preview
+- Ajustado varios textos
+
+### Added
+- Ahora se da la opcion de cerrar una sesion si el usuario y contraseña son correctos
+- Ahora se bloquean las paginas de biometria si no esta el msi instalado
+
+
+## [2.5.0] - 2020-09-11
+
+### Added
+- biometria de cajas
+- reporte ingresos
+- reporte detalle caja
+
+### Changed
+- se mantiene el cliente actual en cajas cuando se cambia de pestaña
+- ajustada la tabla de cajas
+
+## [2.4.0] - 2020-09-11
+
+### Added
+- agregado cajas de seguridad
+- agregado estado recinto
+
+## [2.3.0] - 2020-08-21
+
+### Added
+- agregado enrolamiento y modificacion biometrica
+- agregado primeNG
+
+## [2.2.0] - 2020-07-21
+
+### Added
+- agregado refresh de token
+- agregado ruteo de urls, con verificacion de funciones para su acceso
+- agregado barra de navegacion
+- agregado menu lateral
+- cuando fallan las credenciales se limpia la contraseña
+
+### Changed
+- cambiado alerts a servicio que se encarga de presentar alertas de una forma menos invasiva
+- cambiado el diseño para adaptarse al uso de rutas
+- cambiado al manejo de excepciones nuevo
+
+## [2.0.0] - 2020-07-01
+
+### Changed
+-cambiado los endpoints para poder usar la nueva version del backend
+
+## [1.1.0] - 2020-06-17
+
+### Added
+-se agrego uso de JWT
+
+### Changed
+-el logout simplemente borra el token

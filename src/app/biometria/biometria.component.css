@@ -1,0 +1,80 @@
+*{
+    padding: 0;
+  }
+  .boton-buscar{
+    margin: auto;
+    margin-top: 10px;
+    display: block !important;
+    font-size: 30px;
+    width: 40% !important;
+  }
+
+  .boton-volver{
+    margin: auto;
+    margin-top: 10px;
+    display: block !important;
+    font-size: 30px;
+    width: 30% !important;
+  }
+
+  .cliente, .botonVolver{
+    width: 80%;
+    background-color: gray;
+    border: 2px solid red;
+    border-radius: 20px;
+    margin: auto;
+  }
+
+  .botonVolver{
+    margin-bottom: 10px;
+    background-color: wheat;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .contenedor-cliente{
+    margin-top: 20px;
+  }
+
+  .acciones{
+    width: 80%;
+    margin: auto;
+    margin-top: 20px;
+    height: 150px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  .acciones > *{
+    height: 150px;
+    width: 40%;
+    overflow: hidden;
+    border-radius: 20px;
+    text-align: center;
+  }
+
+  .acciones > * > img{
+    margin: auto;
+    height: 80px;
+  }
+
+  .cliente *{
+    text-align: center;
+  }
+  
+  .no-enrolado{
+    background-color: rgb(250, 106, 106);
+  }
+  .enrolado{
+    background-color: rgb(106, 255, 106);
+  }
+  .warning{
+    background-color: rgb(159, 247, 247);
+  }
+
+  @media screen and (min-width: 900px){
+    form{
+      width: 35%;
+    }
+  }

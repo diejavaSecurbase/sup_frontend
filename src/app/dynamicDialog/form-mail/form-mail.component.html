@@ -1,0 +1,8 @@
+<form action="" (ngSubmit)="confirmar()" class="global-centered-form" autocomplete="off" #myForm="ngForm">
+    <label for="numero_telefono" >Dirección Email</label>
+    <input type="text" name="numbero_documento" [(ngModel)]="mail" pInputText pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$"/>
+    <div class="global-double-button">
+        <button class="ui-button-danger" pButton type="button" label="Cancelar" (click)="cancelar()"></button>
+        <button class="ui-button" pButton type="submit" [disabled]="!myForm.form.valid || mail == null" label="Confirmar"></button>
+    </div>
+</form>

@@ -1,0 +1,50 @@
+<div *ngIf="!this.currentCliente">
+    <form action="" class="filtros" autocomplete="off">        
+        <div class="global-centered-form">
+            <h4>Baja de Huella</h4>
+            <br>
+            <label for="pais_origen">País</label>
+            <p-dropdown [options]="paisesOrigen" [(ngModel)]="pais" ngDefaultControl name="pais_origen" class="input" [disabled]="true"> </p-dropdown>
+            <label class="margin-top-1rem" for="tipo_documento">Tipo de documento</label>
+            <p-dropdown [options]="tiposDocs" [(ngModel)]="tipoDoc" ngDefaultControl name="tipo_documento" class="input"> </p-dropdown>
+            <label class="margin-top-1rem" for="numero_documento">Número de documento</label>
+            <input type="text" maxlength="11" name="numbero_documento" [(ngModel)]="numDoc"
+                (keyup)="verificarInput($event.target.value, 'documento')" pInputText />
+        </div>        
+        <form action="" class="global-centered-form">
+            <div class="global-double-button">
+            <button (click)="buscar()" pButton class="boton-buscar ui-button" label="Buscar"
+                [disabled]="disabled ? true : null" id="btnbuscar"></button>
+ 
+        </div>
+    </form>
+    </form>
+</div>
+
+<div *ngIf="this.currentCliente" class="contenedor-cliente">  
+    <div class="global-key-value-data">
+        
+        <h5><strong>Cliente:</strong></h5>
+        <app-informacion-cliente [currentCliente]="this.currentCliente" [currentId]="this.currentId" [infoExtra]="false"></app-informacion-cliente>
+
+        <div class="global-key-value" *ngIf="showModalBaja">            
+                <p>Número de Gestar:</p>
+                <input class="contentInput" type="number" maxlength="50" name="numero_gestar" id="numero_gestar" [(ngModel)]="this.numGestar"
+                (keyup)="verificarInput($event.target.value, 'gestar')" pInputText autocomplete="off"/>                 
+        </div>
+        <div class="global-key-value" *ngIf="showModalBaja">            
+                <p>Motivo baja:</p>
+                <input class="contentInput" type="text" maxlength="20" name="motivo" id="motivo" [(ngModel)]="this.motivoBaja"
+                disabled/>    
+        </div> 
+        
+    </div>      
+    <form action="" class="global-centered-form">
+        <div class="global-double-button">
+            <button class="boton-buscar ui-button-warning buscarAgain" pButton type="button" label="Nueva búsqueda" (click)="buscarAgain()"></button>
+            <button class="ui-button" *ngIf="currentId.perfil_biometrico && !showModalBaja" pButton type="button" label="Dar la baja" (click)="showModalBajaBiometrica()"></button>
+            <button class="ui-button" *ngIf="currentId.perfil_biometrico && showModalBaja" pButton type="button" label="Confirmar baja" (click)="confirmarBaja()"></button>
+        </div>
+    </form> 
+</div>
+

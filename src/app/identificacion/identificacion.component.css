@@ -1,0 +1,25 @@
+#huellaImagen{
+    border: 1px solid black;
+    border-radius: 10px;
+  }
+
+  .anchorSinUrl{
+    color: blue;
+    text-decoration: none; background-image: linear-gradient(blue, blue); background-position: 0% 100%; background-repeat: no-repeat; background-size: 0% 2px; transition: background-size .3s;
+  } 
+  
+  .anchorSinUrl:hover, .anchorSinUrl:focus { 
+    background-size: 100% 2px; cursor: pointer; 
+  }
+
+.centradoVertical {
+  height: 60vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}

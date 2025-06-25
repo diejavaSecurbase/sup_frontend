@@ -1,0 +1,18 @@
+<form action="" class="global-centered-form" autocomplete="off">
+    <label for="tipos">Tipo telefono</label>
+    <p-dropdown [options]="tipos" [(ngModel)]="tipo" name="tipos" class="input" (onChange)="cambiarTipoTelefono($event.value)"> </p-dropdown>
+    <div>
+        <div class="global-small-input">
+            <label for="codArea" >Cód.<br>Área</label>
+            <input type="text" maxlength="4" name="codArea" [(ngModel)]="codArea" pInputText (paste)="noEvent($event)"(keydown)=verificarCodigoArea($event)/>
+        </div>
+        <div class="global-large-input">
+            <label for="numero_telefono" ><br>Número de teléfono</label>
+            <input type="text" maxlength="8" name="numbero_documento" [(ngModel)]="numTel" pInputText (paste)="noEvent($event)" (keydown)=verificarCodigoArea($event)/>
+        </div>
+    </div>
+    <div class="global-double-button">
+        <button class="ui-button-danger" pButton type="button" label="Cancelar" (click)="cancelar()"></button>
+        <button class="ui-button" pButton type="button" (click)="confirmar()" label="Confirmar"></button>
+    </div>
+</form>

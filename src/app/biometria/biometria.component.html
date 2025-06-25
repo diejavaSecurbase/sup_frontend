@@ -1,0 +1,27 @@
+<form action="" *ngIf="!this.currentCliente" class="global-centered-form" autocomplete="off">
+
+    <label for="pais_origen">País</label>
+    <p-dropdown [options]="paisesOrigen" [(ngModel)]="pais" id="pais_origen" name="pais_origen" class="input"> </p-dropdown>
+    <label for="tipo_documento">Tipo de documento</label>
+    <p-dropdown [options]="tiposDocs" [(ngModel)]="tipoDoc" name="tipo_documento" class="input"> </p-dropdown>
+    <label for="numero_documento" >Número de documento</label>
+    <input type="text" maxlength="11" name="numbero_documento" [(ngModel)]="numDoc" (keyup)=verificarInput($event.target.value) pInputText />
+    <button (click)="buscar()" pButton class="boton-buscar ui-button" label="Buscar" [disabled]="disabled ? true : null"></button>
+
+</form>
+<div *ngIf="this.currentCliente" class="contenedor-cliente">
+    <div class="global-key-value-data">
+        <h3>Cliente encontrado</h3>
+        <app-informacion-cliente [currentCliente]="this.currentCliente" [currentId]="this.currentId" [infoExtra]="true"></app-informacion-cliente>
+
+    </div>
+    <form action="" class="global-centered-form">
+
+        <div class="global-double-button">
+          <button  (click)="buscarAgain()" class="boton-buscar ui-button-warning buscarAgain" pButton label="Nueva búsqueda"></button>
+          <button class="ui-button" *ngIf="currentId.perfil_biometrico" pButton type="button"  label="Continuar" [routerLink]="['/biometria/modificacion']"></button>
+          <button class="ui-button" *ngIf="!currentId.perfil_biometrico" pButton type="button"  label="Continuar" [routerLink]="['/biometria/alta']"></button>
+        </div>
+    </form>
+</div>
+

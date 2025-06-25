@@ -1,0 +1,152 @@
+<div class="menuContainer" *ngIf="!showSearch">
+    <button style="width: 30%; height: 45px;" (click)="goToRegistroUsuarioBajaMenu()" pButton
+        class="boton-buscar ui-button" label="Reporte de cliente dado de baja"></button>
+    <button style="width: 30%; height: 45px;" (click)="goToRegistroUsuarioBajaPorFechaMenu()" pButton
+        class="boton-buscar ui-button" label="Reporte de bajas por fecha"></button>
+    
+</div>
+
+<div *ngIf="showSearch && !this.currentCliente && !buscarSoloPorFecha && !showSoloPorFecha">
+    <form action="" class="filtros" autocomplete="off">        
+        <div class="global-centered-form">            
+            <br>
+            <label for="pais_origen">País</label>
+            <p-dropdown [options]="paisesOrigen" [(ngModel)]="pais" ngDefaultControl id="pais_origen" name="pais_origen" class="input" [disabled]="true"> </p-dropdown>
+            <label class="margin-top-1rem" for="tipo_documento">Tipo de documento</label>
+            <p-dropdown [options]="tiposDocs" [(ngModel)]="tipoDoc" ngDefaultControl name="tipo_documento" class="input"> </p-dropdown>
+            <label class="margin-top-1rem" for="numero_documento">Número de documento</label>
+            <input type="text" maxlength="11" name="numbero_documento" [(ngModel)]="numDoc"
+                (keyup)="verificarInput($event.target.value, 'documento')" pInputText />
+        </div>
+        <form action="" class="global-centered-form">
+            <div class="global-double-button">
+            <button class="ui-button-warning" pButton type="button" label="Volver atrás"
+                (click)="backToButtons()"></button>
+            <button (click)="buscar()" pButton class="boton-buscar ui-button" label="Buscar"
+                [disabled]="disabled ? true : null" id="btnbuscar"></button>
+ 
+        </div>
+    </form>
+    </form>
+</div>
+
+<div *ngIf="showSearch && buscarSoloPorFecha">
+    <form action="" class="filtros" autocomplete="off">
+        <div class="date-range-container margin-top-1rem">
+            <div class="calendar-container cubrirMayoria">
+                <label for="fechaDesde">Fecha Desde</label>
+                <p-calendar name="fechaDesde" [(ngModel)]="fechaDesde" ngDefaultControl
+                    [style]="{'width':'100%', 'display':'flex', 'align-items':'flex-end'}"
+                    [inputStyle]="{'width':'100%','line-height':'normal'}" [showIcon]="true"
+                    (ngModelChange)="onChangeDesde()" [maxDate]="fechaHoy" dateFormat="dd/mm/yy"
+                    showTime="true"></p-calendar>
+            </div>
+            <div class="calendar-container cubrirMayoria">
+                <label for="fechaHasta">Fecha Hasta</label>
+                <p-calendar name="fechaHasta" [(ngModel)]="fechaHasta" ngDefaultControl
+                    [style]="{'width':'100%', 'display':'flex', 'align-items':'flex-end'}"
+                    [inputStyle]="{'width':'100%','line-height':'normal'}" [showIcon]="true" [maxDate]="maxDateHasta"
+                    [minDate]="fechaDesde" [defaultDate]="fechaDesde" [disabled]="!fechaDesde" dateFormat="dd/mm/yy"
+                    showTime="true"></p-calendar>
+            </div>
+        </div>
+        <label style="width: 70%;" class="margin-top-1rem" for="cantidad-registros">Cantidad de registros</label>
+        <input style="width: 70%;" class="numberInput" type="number" id="cantidad-registros" name="cantidad-registros"
+            min="1" max="500" onkeyup="if(this.value>500){this.value='500'}" [(ngModel)]="cantidadRegistros">
+        <div action="" class="global-centered-form">
+            <div class="global-double-button">
+                <button class="ui-button-warning" pButton type="button" label="Volver atrás"
+                    (click)="backToButtons()" id="btnBackToButtons"></button>
+                <button (click)="cargaDatosRegistroUsuarioDadoBajaPorFecha()" pButton class="boton-buscar ui-button"
+                    label="Buscar" [disabled]="disabled ? true : null" id="buscarUssporFecha"></button>
+
+            </div>
+        </div>
+    </form>
+</div>
+
+<div *ngIf="(menuRegistroUsuarioBajaActive && this.currentCliente) || (showSoloPorFecha)">
+    <div *ngIf="!isLoading" class="tableRegistroUsuarios">
+        <h3>Registros de baja</h3>
+        <form class="form">
+            <input class="buscador" type="text" [(ngModel)]="searchTextBajas" (keyup.enter)="searchInTableBajas()"
+                name="searchBajas" id="searchBajas" placeholder="Buscar en la tabla">
+        </form>
+        <div *ngIf="!isBusquedaPorFecha" innerHTML="{{constructBajaUserLabels(bajas[0])}}"></div>
+        <p-table [value]="bajas" [paginator]="true" [rows]="5">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th *ngIf="isBusquedaPorFecha" id="id_usuario">id_usuario</th>
+                    <th *ngIf="isBusquedaPorFecha" id="identificador_cliente">Identificador cliente</th>
+                    <th id="fechaEnrolamiento">Fecha Enrolamiento</th>
+                    <th id="fechaUltActualizacion">Fecha Última Actualización</th>
+                    <th id="fechaUltVerificacion">Fecha Última Verificación</th>
+                    <th id="fechaUltIdentificacion">Fecha Última Identificación</th>                   
+                    <th id="dbidDuplicado">DBID Duplicado</th>
+                    <th id="usuarioEnr">Usuario Enrolador</th>
+                    <th id="usuarioAct">Usuario Actualización</th>
+                    <th id="usuarioBaja">Usuario baja</th>
+                    <th id="fechaBaja">Fecha de Baja</th>
+                    <th id="numeroGestar">Número Gestar</th>
+                    <th id="motivoBaja">Motivo de baja</th>
+                    
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-baja>
+                <tr>
+                    <td [ngStyle]="{'background-color': (baja.highlighted.includes('ID_PERSONA')) ? 'yellow' : 'transparent'}"
+                        *ngIf="isBusquedaPorFecha && baja.id_persona!= null">{{baja.id_persona}}</td>
+                    <td [ngStyle]="{'background-color': (baja.highlighted.includes('DBID')) ? 'yellow' : 'transparent'}"
+                        *ngIf="isBusquedaPorFecha">{{baja.dbid}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('FECHA_ENR')) ? 'yellow' : 'transparent'}">
+                        {{baja.fecha_enrolamiento | date: 'dd/MM/yyyy HH:mm:ss' : 'UTC'}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('FECHA_ULT_ACT')) ? 'yellow' : 'transparent'}">
+                        {{baja.fecha_ult_actualizacion | date: 'dd/MM/yyyy HH:mm:ss' : 'UTC'}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('FECHA_ULT_VER')) ? 'yellow' : 'transparent'}">
+                        {{baja.fecha_ult_verificacion | date: 'dd/MM/yyyy HH:mm:ss' : 'UTC'}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('FECHA_ULT_IDEN')) ? 'yellow' : 'transparent'}">
+                        {{baja.fecha_ult_identificacion | date: 'dd/MM/yyyy HH:mm:ss' : 'UTC'}}</td>
+                     <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('DBID_DUPLICADO')) ? 'yellow' : 'transparent'}">
+                        {{baja.dbid_duplicado}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('USUARIO_ENR')) ? 'yellow' : 'transparent'}">
+                        {{baja.usuario_enr}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('USUARIO_ACT')) ? 'yellow' : 'transparent'}">
+                        {{baja.usuario_act}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('USUARIO')) ? 'yellow' : 'transparent'}">
+                        {{baja.usuario}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('FECHA_BAJA')) ? 'yellow' : 'transparent'}">
+                        {{baja.fecha_baja | date: 'dd/MM/yyyy HH:mm:ss' : 'UTC'}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('NRO_GESTAR')) ? 'yellow' : 'transparent'}">
+                        {{baja.nro_gestar}}</td>
+                    <td
+                        [ngStyle]="{'background-color': (baja.highlighted.includes('MOTIVO_BAJA')) ? 'yellow' : 'transparent'}">
+                        {{baja.motivo_baja}}</td>
+                  
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-baja>
+                <tr>
+                    <td [attr.colspan]="16">
+                        No se encontraron registros
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <div class="global-double-button" style="margin-top: 10px;">
+            <button *ngIf="!showSoloPorFecha" (click)="buscarAgain()" class="boton-buscar ui-button-warning buscarAgain"
+                pButton label="Nueva búsqueda"></button>
+            <button class="ui-button-warning" pButton type="button" label="Volver atrás"
+                (click)="backToButtons()"></button>
+        </div>
+    </div>
+</div>

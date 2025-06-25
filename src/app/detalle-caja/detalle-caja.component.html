@@ -1,0 +1,86 @@
+<div class="global-key-value-data" *ngIf="currentDetalle">
+  <h3>Detalle de la Caja de Seguridad</h3>
+  <div class="global-key-value">
+    <p>Sucursal: </p>
+    <p>{{caja.sucursalDescripcion}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Modelo: </p>
+    <p>{{caja.modeloCaja}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Número: </p>
+    <p>{{caja.nroCajaSeguridad}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Estado: </p>
+    <p>{{caja.estado}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Último Ingreso: </p>
+    <p>{{currentDetalle.usuarioUltIng}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Nro cuenta: </p>
+      <p>{{currentDetalle.cuenta}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Fecha Últ Ingreso: </p>
+      <p>{{currentDetalle.fechaUltIng}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Prox vencimiento: </p>
+      <p>{{currentDetalle.fechaProxVto}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Hora Últ Ingreso: </p>
+      <p>{{currentDetalle.horaUltIng}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Última Comisión: </p>
+      <p>{{currentDetalle.fechaUltComision}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Cobertura: </p>
+      <p>{{currentDetalle.cobertura}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Monto: </p>
+      <p>{{currentDetalle.monto}}</p>
+  </div>
+</div>
+
+<div class="tableCaja" *ngIf="currentDetalle">
+  <h3>Autorizados</h3>
+  <p-table [columns]="cabeceras"  [value]="currentDetalle.personas" *ngIf="currentDetalle" [virtualScroll]="currentDetalle.personas.length > 4"
+  [scrollable]="true" scrollHeight="200px" [style] ="{'text-align':'center'}">
+    <ng-template pTemplate="header" >
+        <tr>
+            <th id="tipoDocumento">Tipo Doc</th>
+            <th id="numeroDocumento">Nro Documento</th>
+            <th id="titularidad">Titularidad</th>
+            <th id="apellidoNombre">Apellido y Nombre</th>
+            <th id="enrolado">Enrolado</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-parametro let-columns="columns">
+        <tr [pEditableRow]="parametro" >
+            <td *ngFor="let col of columns">
+              <div *ngIf="col.field !== 'enrolado'" >
+                {{parametro[col.field]}}
+              </div>
+              <div *ngIf="col.field === 'enrolado'" >
+                <button *ngIf="parametro[col.field] === true" pButton type="button" icon="pi pi-check" class="ui-button green"></button>
+                <button *ngIf="parametro[col.field] === false" pButton type="button" icon="pi pi-times" class="ui-button red" ></button>
+              </div>
+            </td>
+        </tr>
+    </ng-template>
+  </p-table>
+</div>
+
+<form  *ngIf="currentDetalle" action="" class="global-centered-form">
+  <div class="global-double-button">
+    <button class="ui-button" pButton type="button"  label="Volver" (click)="volver()"></button>
+  </div>
+</form>

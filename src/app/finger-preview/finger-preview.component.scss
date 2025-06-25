@@ -1,0 +1,62 @@
+.finger-container {
+    background-color: #f4f4f4;
+    border-style: solid;
+    border-color: #000000;
+    border-radius: 50%;
+    border-width: 50%;
+    min-width: 140px;
+    min-height: 190px;
+    max-width: 140px;
+    max-height: 190px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    img {
+      max-width: 100px;
+      width: 75%;
+      height: auto;
+    }
+  
+    .initial-image {
+      animation: blinker 2s linear infinite;
+    }
+  
+    .move-indications {
+      animation: blinker 0.3s linear infinite;
+    }
+  }
+  
+  .img-finger {
+    position: absolute;
+  }
+  
+  .text-4xl	{
+    font-size: 2.25rem;
+    line-height: 2.5rem; 
+  }
+  
+  .text-black {
+    color: #000000;
+  }
+  
+  .mb-5 {
+    margin-bottom: 1.25rem;
+  }
+  
+  @-moz-keyframes blinker {
+    50% {
+      opacity: 0.25; 
+    } 
+  }
+  @-webkit-keyframes blinker {
+    50% {
+      opacity: 0.25; 
+    } 
+  }
+  @keyframes blinker {
+    50% {
+      opacity: 0.25; 
+    } 
+  }

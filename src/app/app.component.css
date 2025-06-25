@@ -1,0 +1,248 @@
+.mensajesErrores{
+  position: fixed;
+  z-index: 3;
+  top:0;
+  width: 100%;
+  margin-top: 0;
+}
+.mensajesErrores .ui-messages{
+  margin-top: 0;
+}
+
+.global-centered-form input, .global-centered-form select, .global-centered-form button {
+  font-size: 100% !important;
+}
+
+.global-key-value-data{
+    width: 1000px;
+    margin: 20px auto;
+}
+
+.global-key-value{
+    float: left;
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.new-key-value{
+  float: left;
+  width: 50%;
+}
+
+.global-key-value-data h3{
+    margin-bottom: 25px;
+    border-bottom: 1px solid #444444;
+}
+
+.global-key-value *:first-child{
+    color: #444444;
+    width: fit-content;
+}
+
+.global-key-value *:last-child{
+    font-weight: 700;
+    margin-right: 30px;
+}
+
+
+@media (max-width: 1050px){
+    .global-key-value-data{
+        width: 85%;
+    }
+    .global-key-value, .new-key-value{
+        width: 100%;
+    }
+}
+
+*{
+    padding: 0;
+}
+
+.global-centered-form{
+    margin: auto;
+    margin-top: 30px;
+    width: 70%;
+}
+
+.just-width{
+  width: 70% !important;
+}
+
+.global-centered-form *{
+  display: inline-block;
+  width: 100%;
+}
+
+.global-centered-form  .input{
+    margin-bottom: 10px;
+    width: 100%;
+}
+.global-centered-form  label{
+    margin-bottom: 0;
+}
+.global-centered-form  button{
+    margin: auto;
+    margin-top: 10px;
+    display: block;
+    font-size: 30px;
+    width: 48%;
+}
+
+.global-centered-form .radio-input{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.global-centered-form .radio-input > div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.global-centered-form .radio-input input{
+    height: 20px;
+    width: 20px;
+}
+.global-centered-form .radio-input p{
+    width: fit-content;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button, .no-margen{
+  -webkit-appearance: none;
+  margin: 0 !important;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.global-centered-form h1{
+text-align: center;
+font-size: 40px;
+}
+
+.global-double-button{
+    width: 100%;
+    display: flex !important;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.just-flex{
+  width: 100%;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.new-just-flex{
+  width: 95%;
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+
+
+.input-side-buttons{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.input-side-buttons button{
+  margin: 0 !important;
+  margin-left: 3px !important;
+}
+
+.global-small-input{
+  width: 25% !important;
+  margin-right: 5% !important;
+  float: left;
+}
+
+.global-small-input-mirror{
+  width: 25% !important;
+  margin-left: 5% !important;
+  float: right;
+}
+
+.global-large-input{
+  width: 70% !important;
+}
+
+.escaner img{
+  width: 100%;
+}
+.estadoEscaner{
+  margin-right: 20px;
+  height: 190px;
+  width: 104px;
+  position: relative;
+}
+.escaner .topElement{
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.escaner, .mensajes-escaner{
+  width: 80%;
+  margin: auto;
+}
+
+.mensajes-escaner{
+  height: 100px;
+}
+
+@media screen and (min-width: 900px){
+    .global-centered-form{
+        width: 40%;
+    }
+}
+.tableCaja{
+  width: 1000px;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.tableRegistroUsuarios{
+  width: 95%;
+  margin: auto;
+  margin-top: 30px;
+}
+
+.alturaDefinida{
+  height: 250px;
+}
+
+@media (max-width: 1050px){
+  .tableCaja{
+      width: 85%;
+  }
+}
+.mensajeCentro{
+  width: fit-content;
+  margin: auto;
+  color: red;
+}
+
+.sinMargen{
+  margin-top: 0
+}
+
+.centradoPantalla {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  height: 35vh;
+  text-align: center;
+  align-self: unset;
+}

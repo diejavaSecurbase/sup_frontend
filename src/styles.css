@@ -1,0 +1,106 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import "../node_modules/bootstrap/dist/css/bootstrap.css";
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css);
+
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+
+@font-face {
+  font-family: 'Titillium Web';
+  font-style: normal;
+  font-weight: 300;
+  src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url(http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff) format('woff');
+}
+
+.ui-button.red {
+  background-color: #c62828 !important;
+  border: 1px solid #c62828 !important;
+}
+
+
+
+.ui-rating{
+  width: fit-content;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.grillaCajas{
+  width: 80%;
+  margin-left: 10vw;
+  margin-right: 10vw;
+  display: inline-block;
+}
+
+.ui-dropdown{
+  width: 100% !important;
+}
+.contenedor-cliente{
+  margin-top: 20px;
+}
+
+.centered {
+  text-align: center;
+  position: relative;
+  margin-top: 10px;
+}
+
+.ui-button.green {
+  border: 1px solid #2e7d33 !important;
+  background: #2e7d33 !important;
+}
+.mensajeCustom{
+  position: fixed;
+  width: 100%;
+  top: -14px;
+  z-index: 100;
+}
+.botonesApretados{
+  width: 200px !important;
+  margin: auto !important;
+}
+.botonesApretados button{
+  width: 49% !important;
+}
+
+
+/* Estilo para componente PrimeNG Steps */
+/* NGPRIME STEPS */
+#container-steps{
+  width: 420px;
+  margin: auto;
+}
+
+#contenedorBotones > button{
+  min-width: 100px;
+  margin-top: 40px;
+}
+
+.ui-steps.ui-steps-readonly .ui-steps-item{
+  min-width: 140px !important;
+}
+
+body .ui-steps > ul > li{
+  min-width: 140px !important;
+}
+
+
+#huellasEnroladas{
+  margin-top: 213px !important;
+}
+
+
+.abrirMensajeScan{
+  -moz-opacity: 1;
+  -khtml-opacity: 1;
+   opacity: 1;
+}
+.cerrarMensajeScan{
+  -moz-opacity: 0;
+  -khtml-opacity: 0;
+  opacity: 0;
+}

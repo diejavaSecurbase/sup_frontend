@@ -1,0 +1,31 @@
+
+.topElement .global-centered-form{
+  margin: 0;
+}
+
+.closing{
+  opacity: 0;
+  animation-name: dissapear;
+  animation-duration: 0.5s;
+}
+.closed{
+  display: none;
+}
+.opening{
+  opacity: 1;
+  animation-name: appear;
+  animation-duration: 0.5s;
+}
+
+#huellaImagen{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+@keyframes dissapear{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+@keyframes appear{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}

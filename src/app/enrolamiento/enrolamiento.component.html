@@ -1,0 +1,227 @@
+<h3 class="centered" *ngIf="currentCliente && mostrarMetdo">{{accion | titlecase}}</h3>
+<div *ngIf="currentCliente" class="p-col-12" id="container-steps">
+  <p-steps ngDefaultControl id="steps"[model]="steps" [(activeIndex)]="activeIndex"></p-steps>
+</div>
+<div class="global-key-value-data" [ngClass]="this.formStatus" *ngIf="currentCliente">
+  <div class="global-key-value">
+      <p>Tipo Documento: </p>
+      <p *ngIf="currentCliente">{{currentCliente.tipoSimboloDocumento}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Número Documento: </p>
+      <p *ngIf="currentCliente">{{currentCliente.numero_documento}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Nombre: </p>
+      <p *ngIf="currentCliente">{{currentCliente.nombre}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Apellido: </p>
+      <p *ngIf="currentCliente">{{currentCliente.apellido}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Fecha nacimiento: </p>
+      <p *ngIf="currentCliente">{{currentCliente.fechaNacimiento}}</p>
+  </div>
+  <div class="global-key-value">
+      <p>Nacionalidad: </p>
+      <p *ngIf="currentCliente">{{currentCliente.pais_documento_descripcion}}</p>
+  </div>
+  <div class="global-key-value"  *ngIf="currentCliente">
+    <p>Género: </p>
+      <p *ngIf="currentCliente.genero == 'M'">
+        MASCULINO
+      </p>
+      <p *ngIf="currentCliente.genero == 'F'">
+        FEMENINO
+      </p>
+  </div>
+  <div class="global-key-value">
+    <p>Sucursal: </p>
+    <p *ngIf="currentCliente">{{this.sucursal}}</p>
+</div>
+</div>
+<form action="" class="global-centered-form" [ngClass]="this.formStatus" autocomplete="off" *ngIf="currentCliente">
+  <div>
+    <div class="global-large-input">
+      <label for="direccion">Domicilio</label>
+      <input type="text" name="direccion" [attr.disabled]="''"[disabled]="true" [(ngModel)]="tituloDireccion" pInputText />
+    </div>
+    <div class="global-small-input-mirror">
+      <label for="codigoPostal">Cód. Postal</label>
+      <input type="text" maxlength="4" name="codigoPostal" (paste)="noEvent($event)" (keydown)=verificarCodigoArea($event) [attr.disabled]="direccionLegal.codigoPostal != null ? '' : null" [(ngModel)]="codigoPostal" pInputText />
+    </div>
+  </div>
+  <label for="telefono">Teléfono</label>
+  <div class="input just-flex">
+    <p-dropdown ngDefaultControl [options]="opcionesTelefonos"  class="variosBotones" [(ngModel)]="telefono" name="telefono"> </p-dropdown>
+    <button pButton class="no-margen" (click)="agregarTelefono()" type="button" icon="pi pi-plus" iconPos="left"></button>
+    <button pButton class="no-margen" (click)="editarTelefono()" [disabled]="1 > opcionesTelefonos.length ? true : null" type="button" icon="pi pi-pencil" iconPos="left"></button>
+  </div>
+  <label for="mail">Email</label>
+  <div class="input just-flex">
+    <p-dropdown ngDefaultControl [options]="opcionesMails"  class="variosBotones" [(ngModel)]="mail" name="mail"> </p-dropdown>
+    <button pButton class="no-margen" (click)="agregarMail()" type="button" icon="pi pi-plus" iconPos="left"></button>
+    <button pButton class="no-margen"  (click)="editarMail()" [disabled]="1 > opcionesMails.length ? true : null" type="button" icon="pi pi-pencil" iconPos="left"></button>
+  </div>
+  <div class="global-double-button">
+      <button class="ui-button-warning" pButton type="button" label="Volver" (click)="volverBio()"></button>
+      <button class="ui-button" pButton type="button" label="Continuar" (click)="confirmarForm()"></button>
+  </div>
+</form>
+<div [ngClass]="this.enrolamientoStatus" class="escaner" *ngIf="!enPasoFinal">
+  <div class="topElement">
+    <div class="estadoEscaner">
+      <img *ngIf="!this.currentImagenDedo && !this.mostrarPreview" src="trueAssets/enrolamiento/{{dedos[currentDedo]}}.png" alt="">
+      <img *ngIf="this.currentImagenDedo && !this.mostrarPreview" [src]="currentImagenDedo | curarUrl" alt="" id="huellaImagen" class="preview">
+
+      <img *ngIf="this.mostrarPreview && this.sinIndicaciones" [src]="currentPreviewEscaner | curarUrl" alt="" id="huellaImagen">
+      <p-rating ngDefaultControl *ngIf="currentCalidad != 0" [ngModel]="currentCalidad" readonly="true" stars="5" [cancel]="false" class="estrellas"></p-rating>
+      
+      <div *ngIf="this.mostrarPreview && this.usarIndicaciones">
+        <finger-preview *ngIf="primeraToma" #fingerPreview
+                        initialFingerImg="./trueAssets/huellas-indicaciones/finger.png"
+                        moveFingerUpImg="./trueAssets/huellas-indicaciones/top-arrow.png"
+                        moveFingerDownImg="./trueAssets/huellas-indicaciones/arrow-down.png"
+                        moveFingerLeftImg="./trueAssets/huellas-indicaciones/left-arrow.png"
+                        moveFingerRightImg="./trueAssets/huellas-indicaciones/right-arrow.png">
+        </finger-preview>
+
+        <finger-preview *ngIf="!primeraToma" #fingerPreview
+                initialFingerImg=""
+                moveFingerUpImg="./trueAssets/huellas-indicaciones/top-arrow.png"
+                moveFingerDownImg="./trueAssets/huellas-indicaciones/arrow-down.png"
+                moveFingerLeftImg="./trueAssets/huellas-indicaciones/left-arrow.png"
+                moveFingerRightImg="./trueAssets/huellas-indicaciones/right-arrow.png">
+        </finger-preview>
+      </div>
+
+    </div>
+    <div style="margin-left: 50px;">
+      <div class="row textoEscaner" *ngIf="escaneando || this.currentDedo >= this.arrayAcciones.length">
+        <label for="mano" >
+          Ingrese el dedo <strong>{{dedos[currentDedo].replace('_', ' ')}}</strong><br>
+          como indica la imagen para realizar la toma.
+        </label>
+      </div>
+      <div class="row textoEscaner" *ngIf="!escaneando && this.arrayAcciones.length > this.currentDedo">
+        <label for="mano" ><strong>{{dedos[currentDedo].replace('_', ' ')}}</strong><br>
+        </label>
+      </div>
+      <div class="row textoEscaner">
+        <p *ngIf="!arrayAcciones[currentDedo] || arrayAcciones[currentDedo].seCapturo">Captura: {{arrayAcciones[currentDedo] && arrayAcciones[currentDedo].seCapturo && !this.esRecaptura ? capturas[arrayAcciones[currentDedo].indice].length : capturas[currentCaptura] ? capturas[currentCaptura].length : 0}}/{{parametrosBiometricos ? parametrosBiometricos[dedos[currentDedo].toLowerCase()] : 0}}</p>
+        <p *ngIf="arrayAcciones[currentDedo] && !arrayAcciones[currentDedo].seCapturo">{{this.dedosFallados[arrayAcciones[currentDedo].indice].estado_huella.replace('_', ' ') | titlecase}}</p>
+      </div>
+      <div class="row textoEscaner" *ngIf="!enPasoFinal">
+        <label [ngClass]="this.mensajeHuellaCapturadaStatus" style="color: green;">Huella tomada correctamente</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="global-centered-form" [ngClass]="this.enrolamientoStatus" *ngIf="!enPasoFinal">
+  <div class="global-double-button">
+    <div class="global-double-button botonesApretados" *ngIf="!escaneando && this.arrayAcciones.length > this.currentDedo || this.estaListoEnrolar && !escaneando">
+      <button pButton class="ui-button" label="Anterior" *ngIf="this.currentDedo != 0" (click)="this.navegarHuellas(-1)"></button>
+      <button *ngIf="this.currentDedo == 0" class="ui-button-danger" pButton type="button" label="Salir" (click)="volverForm()"></button>
+      <button *ngIf="!estaListoEnrolar || this.arrayAcciones.length -1 > this.currentDedo" pButton class="ui-button" label="Siguiente" (click)="this.navegarHuellas(+1)"></button>
+      <button *ngIf="estaListoEnrolar && !(this.arrayAcciones.length -1 > this.currentDedo)" pButton class="ui-button" label="Siguiente" (click)="confirmarEnrolamiento()"></button>
+    </div>
+    <button *ngIf="!escaneando && this.currentDedo == 0 && this.arrayAcciones.length == 0 && !estaListoEnrolar" class="ui-button-danger" pButton type="button" label="Salir" (click)="volverForm()"></button>
+    <button *ngIf="!escaneando && this.currentDedo >= this.arrayAcciones.length && this.currentDedo != 0 && !estaListoEnrolar" class="ui-button" pButton type="button" label="Volver" (click)="navegarHuellas(-1)"></button>
+    <button *ngIf="escaneando" class="ui-button-warning" pButton type="button" [disabled]="estaCompleto ? true : null" label="Detener" (click)="detenerCaptura()"></button>
+    <button class="ui-button" *ngIf="!noCapturable && this.currentDedo >= this.arrayAcciones.length" pButton type="button" [disabled]="escaneando ? true : null" label="Capturar" (click)="escanear()"></button>
+    <button class="ui-button-warning" *ngIf="!noCapturable &&  this.arrayAcciones.length > this.currentDedo" pButton type="button" [disabled]="escaneando || estaListoEnrolar && arrayAcciones[currentDedo] && !arrayAcciones[currentDedo].seCapturo ? true : null" label="Recapturar" (click)="rescanear()"></button>
+    <button class="ui-button-warning" *ngIf="noCapturable && !alreadyConfirmedLastSkip" pButton type="button" [disabled]="!causaNoCapturable ? true : null" label="Omitir Huella" (click)="saltear()"></button>
+    <button class="ui-button-danger" *ngIf="noCapturable && alreadyConfirmedLastSkip" pButton type="button" [disabled]="!causaNoCapturable ? true : null" label="Problemas {{accion}}" (click)="saltearFinal()"></button>
+  </div>
+</div>
+<div class="global-centered-form" [ngClass]="this.enrolamientoStatus" *ngIf="!enPasoFinal">
+  <div class="global-double-button">
+    <h5>No se puede capturar</h5>
+    <p-inputSwitch ngDefaultControl [(ngModel)]="noCapturable" (ngModelChange)="cambioNoCapturar(noCapturable)"></p-inputSwitch>
+  </div>
+  <div class="global-double-button">
+    <p-selectButton ngDefaultControl [options]="causasNoCapturable" [disabled]="!noCapturable" [(ngModel)]="causaNoCapturable"></p-selectButton>
+  </div>
+</div>
+<!-- DIV para 3er STEP -->
+<div class="global-key-value-data" [ngClass]="this.confirmacionStatus" *ngIf="currentCliente && telefono && direccionLegal">
+  <h3>Datos</h3>
+  <div class="global-key-value">
+    <p>Nombre: </p>
+    <p *ngIf="currentCliente">{{currentCliente.nombre}}</p>
+  </div>
+  <div class="global-key-value" *ngIf="currentCliente.domicilios.length >= 1">
+    <p>Provincia: </p>
+    <p>{{direccionLegal.provincia_descripcion}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Apellido: </p>
+    <p *ngIf="currentCliente">{{currentCliente.apellido}}</p>
+  </div>
+  <div class="global-key-value" *ngIf="currentCliente.domicilios.length >= 1">
+    <p>Domicilio: </p>
+    <p>{{direccionLegal.calle}} {{direccionLegal.numero}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Tipo Documento: </p>
+    <p *ngIf="currentCliente">{{currentCliente.tipoSimboloDocumento}}</p>
+  </div>
+  <div class="global-key-value" *ngIf="currentCliente.domicilios.length >= 1">
+    <p>Ciudad :</p>
+    <p>{{direccionLegal.localidad_descripcion}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Número Documento: </p>
+    <p *ngIf="currentCliente">{{currentCliente.numero_documento}}</p>
+  </div>
+  <div class="global-key-value" *ngIf="currentCliente.domicilios.length >= 1">
+    <p>Código Postal: </p>
+    <p>{{direccionLegal.codigoPostal}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Fecha nacimiento: </p>
+    <p *ngIf="currentCliente">{{currentCliente.fechaNacimiento}}</p>
+  </div>
+  <div class="global-key-value">
+    <p>Nacionalidad: </p>
+    <p *ngIf="currentCliente">{{currentCliente.pais_documento_descripcion}}</p>
+  </div>
+  <div class="global-key-value" *ngIf="currentCliente">
+    <p>Género: </p>
+    <p *ngIf="currentCliente.genero == 'M'">MASCULINO</p>
+    <p *ngIf="currentCliente.genero == 'F'">FEMENINO</p>
+  </div>
+  <div *ngIf="currentCliente.telefonos.length >= 1" class="global-key-value">
+    <p>Telefono/s: </p>
+    <p>({{telefono.codigoArea}}) {{telefono.numero}} </p>
+  </div>
+  <div *ngIf="codArea && numero" class="global-key-value">
+    <p>Telefono/s: </p>
+    <p>({{codArea}}){{numero}} </p>
+  </div>
+  <div class="global-key-value">
+    <p>Sucursal: </p>
+    <p *ngIf="currentCliente">{{this.sucursal}}</p>
+  </div>
+</div>
+<br>
+<div [ngClass]="this.confirmacionStatus" *ngIf="currentCliente">
+  <div class="global-key-value-data">
+    <br>
+    <h3 id="huellasEnroladas">Huellas Enroladas</h3>
+    <div class="global-key-value" *ngFor="let huella of generalizaciones; index as i">
+      <p>Huella {{i+1}}:</p>
+      <p>{{huella.dedo.replace('_', ' ')}}</p>
+    </div>
+  </div>
+</div>
+<div class="global-key-value-data" [ngClass]="this.confirmacionStatus" >
+  <div class="global-double-button" *ngIf="esConfirmacionEnrolamiento" id="contenedorBotones">
+    <button class="ui-button" pButton type="button" label="Volver" (click)="volverEnrolamiento()"></button>
+    <button pButton class="ui-button-success" label="Confirmar" (click)="this.enrolar()"></button> 
+    <button class="ui-button" pButton type="button" label="Salir" (click)="cancelarEnrolamiento()"></button>
+  </div>
+</div>
+<div class="centered" *ngIf="enPasoFinal">
+</div>

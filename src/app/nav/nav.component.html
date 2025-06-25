@@ -1,0 +1,10 @@
+<nav *ngIf="this.nombre && this.grupo && !esEmbebido">
+    <div>
+        <img src="trueAssets/logo-supervielle.png" alt="">
+    </div>
+    <div class="second-flex">
+        <p>Usuario: <span id="usuario">{{nombre}}</span></p>
+        <p>Grupo: <span id="grupo">{{grupo}}</span></p>
+        <a id="logout" (click)='logout()'>Logout</a>
+    </div>
+</nav>

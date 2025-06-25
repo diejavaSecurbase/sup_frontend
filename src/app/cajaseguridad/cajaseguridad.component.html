@@ -1,0 +1,128 @@
+<p-confirmDialog #cd [style]="{width: '35vw'}">
+  <p-footer>
+    <button class="ui-button red" type="button" pButton icon="pi pi-times" label="No" (click)="cd.reject()"></button>
+    <button class="ui-button green" type="button" pButton icon="pi pi-check" label="Si" (click)="cd.accept()"></button>
+  </p-footer>
+</p-confirmDialog>
+<div *ngIf="pantallaActual === 'Listado'">
+  <div *ngIf="this.currentCliente" class="contenedor-cliente">
+    <div class="global-key-value-data">
+        <h3>Datos Personales</h3>
+        <div class="global-key-value">
+          <p>País:</p>
+          <div class="mr-0">
+            <span [class]="flag" style="width: 40px; height: 27px;"> </span>
+            <p class="d-inline" style="vertical-align: top;">
+              {{currentCliente.pais_documento_descripcion}}
+            </p>
+          </div>
+        </div>
+        <div class="global-key-value">
+          <p>Tipo y Nro.:</p>
+          <p>{{currentCliente.tipoSimboloDocumento}}: {{currentCliente.numero_documento}}</p>
+        </div>
+        <div class="global-key-value">
+            <p>Nombre:</p>
+            <p>{{currentCliente.nombre}}</p>
+        </div>
+        <div class="global-key-value">
+            <p>Apellido:</p>
+            <p>{{currentCliente.apellido}}</p>
+        </div>
+        <div class="global-key-value">
+            <p>Fecha Nac:</p>
+            <p>{{currentCliente.fechaNacimiento | date:'dd/MM/yyyy'}}</p>
+        </div>
+        <div class="global-key-value">
+            <p>Nacionalidad:</p>
+            <div class="mr-0">
+              <span [class]="flagNacionalidad" style="width: 40px; height: 27px;"> </span>
+              <p class="d-inline" style="vertical-align: top;">
+                {{currentCliente.pais_documento_descripcion}}
+              </p>
+            </div>
+        </div>
+        <div class="global-key-value">
+          <p>Sexo:</p>
+          <p>{{currentCliente.generoDesc}}</p>
+        </div>
+        <div class="global-key-value">
+          <p>Sucursal:</p>
+          <p>{{currentSucursal}}</p>
+        </div>
+        <div class="new-key-value">
+          <label for="telefono">Teléfono</label>
+          <div class="input new-just-flex">
+            <p-dropdown ngDefaultControl [options]="opcionesTelefonos" class="variosBotones" [(ngModel)]="telefono" name="telefono"> </p-dropdown>
+            <button pButton class="no-margen" (click)="agregarTelefono()" type="button" icon="pi pi-plus" iconPos="left"></button>
+            <button pButton class="no-margen" (click)="editarTelefono()" [disabled]="1 > opcionesTelefonos.length ? true : null" type="button" icon="pi pi-pencil" iconPos="left"></button>
+          </div>
+        </div>
+        <div class="new-key-value">
+          <label for="mail">Email</label>
+          <div class="input new-just-flex">
+            <p-dropdown ngDefaultControl [options]="opcionesMails" class="variosBotones" [(ngModel)]="mail" name="mail"> </p-dropdown>
+            <button pButton class="no-margen" (click)="agregarMail()" type="button" icon="pi pi-plus" iconPos="left"></button>
+            <button pButton class="no-margen" (click)="editarMail()" [disabled]="1 > opcionesMails.length ? true : null" type="button" icon="pi pi-pencil" iconPos="left"></button>
+          </div>
+        </div>
+        <div class="global-key-value">
+          <p></p>
+          <p></p>
+        </div>
+        <div class="global-key-value">
+          <p></p>
+          <p></p>
+        </div>
+    </div>
+  </div>
+
+  <div class="tableCaja">
+    <div *ngIf="this.cajasSeguridad !== null && this.cajasSeguridad.length !== 0" >
+      <h3>Cajas de Seguridad</h3>
+      <p-table [columns]="cabeceras" [value]="cajasSeguridad" [virtualScroll]="cajasSeguridad.length > 4"
+        [scrollable]="true" scrollHeight="202px" [style] ="{'text-align':'center'}" >
+          <ng-template pTemplate="header" let-columns>
+            <tr >
+                <th id="seleccion">Selección</th>
+                <th id="numero">Número</th>
+                <th id="estado">Estado</th>
+                <th id="tipoAcceso">Tipo Acceso</th>
+                <th id="modelo">Modelo</th>
+                <th id="frecuencia">Frecuencia</th>
+                <th id="titularidad">Titularidad</th>
+                <th class="stretch" id="detalle">Detalle</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-parametro let-columns="columns">
+            <tr>
+                <td style="text-align:center">
+                  <p-checkbox binary="true" (onChange)="addOrRemoveRow(parametro,$event)" [disabled]="parametro['sucursal'] !== this.currentSucursal"></p-checkbox>
+                </td>
+                <td *ngFor="let col of columns" class="ui-resizable-column">
+                    {{parametro[col.field] | camelCaseToEspacio}}
+                </td>
+                <td style="text-align:center">
+                  <button pButton type="button" icon="pi pi-search" class="ui-button blue"  (click)="abrirDetalleCaja(parametro)"></button>
+                </td>
+            </tr>
+        </ng-template>
+  </p-table>
+  
+      </div>
+    </div>
+
+  <h3 class="mensajeCentro" *ngIf="this.cajasSeguridad !== null && this.cajasSeguridad.length == 0">No posees cajas de seguridad</h3>
+  <form action="" class="global-centered-form">
+    <div class="global-double-button">
+      <button class="ui-button-warning" pButton type="button"  label="Volver" (click)="this.volver()"></button>
+      <button class="ui-button" pButton type="button"  label="Autorizar" [disabled]="cajasSeleccionadas.length === 0" (click)="abrirEstadoRecinto()"></button>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="pantallaActual === 'Detalle'">
+  <app-detalle-caja [caja]="this.cajaSeleccionada" (botonVolver)="this.pantallaActual='Listado'"></app-detalle-caja>
+</div>
+

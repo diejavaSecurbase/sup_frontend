@@ -1,0 +1,17 @@
+<div>
+    <div class="finger-container">
+    
+      <img *ngIf="(state == 'ready' || state == 'scan-ok') && readyFingerImg != undefined" [src]="readyFingerImg" class="img-finger" alt="img-finger"/>
+      <img class="initial-image" *ngIf="state != 'scan-ok' && initialFingerImg != undefined && !hideEmptyFinger" [src]="initialFingerImg" alt="img_inicial" />
+      <img class="initial-image" *ngIf="state == 'empty' && emptyFingerImg != undefined" [src]="emptyFingerImg" alt="img-Empty" />
+    
+      <img class="move-indications" *ngIf="moveFinger == 'up' && moveFingerUpImg != undefined" [src]="moveFingerUpImg"  alt="img_move_up"/>
+      <img class="move-indications" *ngIf="moveFinger == 'down' && moveFingerDownImg != undefined" [src]="moveFingerDownImg"  alt="img_move_down"/>
+      <img class="move-indications" *ngIf="moveFinger == 'left' && moveFingerLeftImg != undefined" [src]="moveFingerLeftImg" alt="img_move_left"/>
+      <img class="move-indications" *ngIf="moveFinger == 'right' && moveFingerRightImg != undefined" [src]="moveFingerRightImg" alt="img_move_right"/>
+    </div>
+    <div style="margin-left: 2rem;">
+      <p style="color: #515151; font-size: xx-small; text-align: center;" *ngIf="indicacionPrincipal != null">{{indicacionPrincipal}}</p>
+    </div>
+  </div>
+  

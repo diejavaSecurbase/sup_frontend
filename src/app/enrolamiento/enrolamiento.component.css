@@ -1,0 +1,75 @@
+
+.topElement .global-centered-form{
+  margin: 0;
+}
+
+.closing{
+  opacity: 0;
+  animation-name: dissapear;
+  animation-duration: 0.5s;
+}
+.closed{
+  display: none;
+}
+.opening{
+  opacity: 1;
+  animation-name: appear;
+  animation-duration: 0.5s;
+}
+
+#huellaImagen{
+  border: 1px solid black;
+  border-radius: 10px;
+}
+@keyframes dissapear{
+  0%{opacity: 1;}
+  100%{opacity: 0;}
+}
+@keyframes appear{
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}
+
+/* NGPRIME STEPS */
+#container-steps{
+  width: 420px;
+  margin: auto;
+}
+
+#contenedorBotones > button{
+  min-width: 100px;
+  margin-top: 40px;
+}
+
+.ui-steps.ui-steps-readonly .ui-steps-item{
+  min-width: 140px !important;
+}
+
+body .ui-steps > ul > li{
+  min-width: 140px !important;
+}
+
+
+#huellasEnroladas{
+  margin-top: 213px !important;
+}
+
+.textoEscaner {
+  width: 320px
+}
+
+.variosBotones{
+  width: 80% !important;
+}
+
+.preview{
+  height: 60vh;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  max-width: 100%;
+  max-height: 100%;
+}

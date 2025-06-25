@@ -1,0 +1,10 @@
+ body .ui-table .ui-table-tbody > tr:nth-child(even).ui-state-highlight {
+    background-color: #E3F2FD;
+    color: #000;
+  } 
+  
+  body .ui-table .ui-table-tbody > tr.ui-state-highlight {
+    background-color: #E3F2FD;
+    color: #000;
+
+  }
