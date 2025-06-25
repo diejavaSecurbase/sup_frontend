@@ -1,4 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { DropdownModule } from 'primeng/dropdown';
+import { InputTextModule } from 'primeng/inputtext';
+import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { TableModule } from 'primeng/table';
+import { MessageModule } from 'primeng/message';
 import { SelectItem } from 'primeng/api';
 import { IdentificacionCliente } from '../DTO/identificacion-cliente';
 import { EnrolamientoFacialDTO } from '../DTO/EnrolamientoFacialDTO';
@@ -12,6 +20,17 @@ import { AuthHistoryList } from '../DTO/authHistory';
 
 @Component({
   selector: 'app-bio-facial',
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    DropdownModule,
+    InputTextModule,
+    ButtonModule,
+    DialogModule,
+    TableModule,
+    MessageModule
+  ],
   templateUrl: './bio-facial.component.html',
   styleUrls: ['./bio-facial.component.css'],
 })
@@ -44,7 +63,7 @@ export class BioFacialComponent implements OnInit {
     this.currentCliente = null;
     this.currentId = null;
     this.numDoc = null;
-    this.nameSubname=null;
+    this.nameSubname = null;
     this.paisesOrigen = [{ label: 'Argentina', value: 80 }];
     this.pais = '80';
     this.consultas.setCurrentClienteFacial(null, null);
@@ -134,7 +153,7 @@ export class BioFacialComponent implements OnInit {
     this.authHistoryList = null;
     this.showTable = null;
     this.displayModalDeleteEnrollment = false;
-    this.nameSubname=null;
+    this.nameSubname = null;
     this.consultas.setCurrentClienteFacial(null, null);
   }
 
